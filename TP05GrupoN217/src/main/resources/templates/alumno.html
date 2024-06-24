@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<meta name="viewport">
+</head>
+<body class="container">
+   
+	<div class="row justify-content-start">
+		<div class="col-3"></div>
+		<div class="col-6">
+			<!--                          MetodoQueSeEfecutaAlPresionarBoton     -->
+			<form data-th-object="${alumnoForm}" data-th-action="${band}?@{/alumno/guardarAlumno}:@{/alumno/modificarAlumno}"  method="post">
+				 <div class=mb-3 data-th-if=!${band}>
+				 <label for=id class=form-label>ID</label>
+				 <input type="number" class=form-control id=dni data-th-field=*{id} readonly>
+				 </div>
+				 <div class=mb-3>
+				 <label for=dni class=form-label>DNI</label>
+				 <input type="number" class=form-control id=dni data-th-field=*{dni}>
+				 </div>
+				 <div class=mb-3>
+				 <label for=nombre class=form-label>Nombre</label>
+				 <input type="text" class=form-control id=nombre data-th-field=*{nombre}>
+				 </div>
+				 <div class=mb-3>
+				 <label for=apellido class=form-label>Apellido</label>
+				 <input type="text" class=form-control id=apellido data-th-field=*{apellido}>
+				 </div>
+				  <div class=mb-3>
+				 <label for=email class=form-label>E-mail</label>
+				 <input type="email" class=form-control id=email aria-describedby=ayudaEmail data-th-field=*{email}>
+				 <div id=ayudaEmail class=form-text>Ingresa correo electronico.</div>
+				 </div>
+				 <div class=mb-3>
+				 <label for=telefono class=form-label>Numero de Celular</label>
+				 <input type="text" class=form-control id=telefono aria-describedby=ayudaTelefono data-th-field=*{telefono}>
+				 <div id=ayudaTelefono class=form-text>Ingresa el numero de celular sin el +54, solo caracteristica de provincia, y sin el 15.</div>
+				 </div>
+				 <div class=mb-3>
+				 <label for=fechaNacimiento class=form-label>Fecha de Nacimiento</label>
+				 <input type="date" class=form-control id=fechaNacimineto aria-describedby=ayudafechaNacimiento data-th-field=*{fechaNacimineto}>
+				 <div id=ayudafechaNacimiento class=form-text>Ingrese dia/mes/año de nacimiento.</div>
+				 </div>
+				 <div class=mb-3>
+				 <label for=domicilio class=form-label>Domicilio</label>
+				 <input type="text" class=form-control id=domicilio aria-describedby=ayudadomicilio data-th-field=*{domicilio}>
+				 <div id=ayudadomicilio class=form-text>Ingresa la calle, numero de casa, sector y barrio.</div>
+				 </div>
+				 <div class=mb-3>
+				 <label for=lu class=form-label>LU</label>
+				 <input type="text" class=form-control id=lu aria-describedby=ayudaLu data-th-field=*{LU}>
+				 <div id=ayudaLu class=form-text>Ingresa el Numero de Libreta Universitaria.</div>
+				 </div>			  
+			  
+			  <button type="submit" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
+		<div class="col-3"></div>
+	</div>
+
+
+
+</body>
+
+
+</html>
