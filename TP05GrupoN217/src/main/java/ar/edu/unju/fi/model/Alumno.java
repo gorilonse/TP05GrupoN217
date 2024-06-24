@@ -3,8 +3,6 @@ package ar.edu.unju.fi.model;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
