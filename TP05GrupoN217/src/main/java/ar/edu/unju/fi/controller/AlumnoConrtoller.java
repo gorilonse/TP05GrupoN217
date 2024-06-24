@@ -40,7 +40,8 @@ public class AlumnoConrtoller {
 	@GetMapping("/lista")
 	public ModelAndView getListaAlumnos() {
 		ModelAndView mov = new ModelAndView("alumno-list");
-		mov.addObject("listaDeAlumnos",alumnoServiceIMP.listarAlumnos());
+		//mov.addObject("listaDeAlumnos",alumnoServiceIMP.listarAlumnos());
+		mov.addObject("listaDeAlumnos",alumnoServiceIMP.listarAlumnoDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		return mov;
 	}

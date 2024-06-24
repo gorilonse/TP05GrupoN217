@@ -21,10 +21,10 @@
 						<th scope="col">Apellido</th>
 						<th scope="col">Nombre</th>
 						<th scope="col">DNI</th>
-						<th scope="col">Teléfono</th>
+					<!-- 	<th scope="col">Teléfono</th>
 						<th scope="col">Email</th>
 						<th scope="col">Domicilio</th>
-						<th scope="col">Fecha de Nacimiento</th>
+						<th scope="col">Fecha de Nacimiento</th>  -->
 					</tr>
 				</thead>
 				<tbody>
@@ -33,10 +33,10 @@
 						<td data-th-text="${l.apellido}"></td>
 						<td data-th-text="${l.nombre}"></td>
 						<td data-th-text="${l.dni}"></td>
-						<td data-th-text="${l.telefono}"></td>
+					<!-- 	<td data-th-text="${l.telefono}"></td>
 						<td data-th-text="${l.email}"></td>
 						<td data-th-text="${l.domicilio}"></td>
-						<td data-th-text="${l.fechaNacimineto}"></td>
+						<td data-th-text="${l.fechaNacimineto}"></td>  -->
 						<td>
 							<a data-th-href="@{'/alumno/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
 							<a data-th-href="@{'/alumno/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>

@@ -3,6 +3,7 @@ package ar.edu.unju.fi.model;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +24,12 @@ public class Carrera {
 	//ATRIBUTO
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name = "car_id")
 	private int id;
 	private String codigo;
 	private String nombre;
 	private String cantidadDeAnios;
 	private boolean estado;
-	@OneToOne(mappedBy = "carrera",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Materia materia;
+	//@OneToOne(mappedBy = "carrera",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	//private Materia materia;
 }

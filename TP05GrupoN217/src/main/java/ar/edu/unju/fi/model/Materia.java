@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.model;
 
+import org.hibernate.type.TrueFalseConverter;
 import org.springframework.stereotype.Component;
 
 import ar.edu.unju.fi.numerado.Modalidad;
@@ -33,10 +34,10 @@ public class Materia {
 		private String curso;
 		private String cantidadDeHora;   
 		private Modalidad modalidadDeHoraString;  //ENUMERADO
-		@OneToOne
-		@JoinColumn(name = "doc_id")
+		@OneToOne ()
+		@JoinColumn(name = "doc_id",unique = true)
 		private Docente docente; //del tipo Docente
-		@OneToOne 
-		@JoinColumn(name = "car_id")
+		@OneToOne ()
+		@JoinColumn(name = "car_id",unique = true)
 		private Carrera carrera; //del tipo Carrera
 }

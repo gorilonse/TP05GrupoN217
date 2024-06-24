@@ -3,6 +3,7 @@ package ar.edu.unju.fi.model;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,13 +23,14 @@ public class Docente {
 	//ATRIBUTOS
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="doc_id")
 	private int id;
 	private String legajo;
 	private String nombre;
 	private String apellido;
 	private String email;
 	private String telefono;
-	@OneToOne(mappedBy = "docente",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Materia materia;
+	//@OneToOne(mappedBy = "docente",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	//private Materia materia;
 	
 }

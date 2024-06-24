@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.dto.AlumnoDto;
+import ar.edu.unju.fi.mapper.IAlumnoMapDto;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.repository.IAlumnoRepository;
 import ar.edu.unju.fi.service.IAlumnoService;
@@ -15,7 +17,8 @@ public class AlumnoServiceImp implements IAlumnoService {
 	
 	@Autowired  //esto indica q se usa inyeccion de dependencia.
 	IAlumnoRepository ialumnoRepositorio;
-	
+	@Autowired
+	IAlumnoMapDto iAlumnoMapDto;
 	@Override
 	public void agregarAlumno(Alumno alumno) {
 		// TODO Auto-generated method stub
@@ -50,6 +53,12 @@ public class AlumnoServiceImp implements IAlumnoService {
 		auxAlumno=buscarAlumno(id);
 		System.out.println(auxAlumno);
 		ialumnoRepositorio.delete(auxAlumno);
+	}
+
+	@Override
+	public List<AlumnoDto> listarAlumnoDto() {
+		// TODO Auto-generated method stub
+		return iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos());
 	}
 
 }
