@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<meta name="viewport">
+</head>
+<body class="container">
+	<header data-th-replace="~{/layouts/header::header}"></header>
+
+	<div class="row justify-content-start">
+		<div class="col-3"></div>
+		<div class="col-6">
+			<!--       MetodoQueSeEfecutaAlPresionarBoton     -->
+			<form data-th-object="${carreraForm}"
+				data-th-action="${band}?@{/carrera/guardarCarrera}:@{/carrera/modificarCarrera}" method="post">
+				<div class=mb-3>
+					<label for=codigo class=form-label>Codigo</label> <input th:readonly="!${band}"
+						type="text" class=form-control id=codigo data-th-field=*{codigo}
+						required  aria-describedby=ayudaCod>
+						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el Código</div>
+				</div>
+				<div class=mb-3>
+					<label for=nombre class=form-label>Nombre</label> <input required
+						type="text" class=form-control id=nombre data-th-field=*{nombre}>
+				</div>
+				<div class=mb-3>
+					<label for=cantidadDeAnios class=form-label>Cantidad de
+						Años</label> <input required type="text" class=form-control
+						id=cantidadDeAnios data-th-field=*{cantidadDeAnios}>
+				</div>
+				<div class="mb-3 form-check">
+					<label class="form-check-label" for="estado">Estado</label> <input
+						type="checkbox" class="form-check-input" id="estado"
+						data-th-field=*{estado} aria-describedby=ayudaEstado>
+					<div id=ayudaEstado class=form-text>Por defecto el estado es "positivo".</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
+		<div class="col-3"></div>
+	</div>
+	<footer data-th-replace="~{/layouts/footer::footer}"></footer>
+</body>
+</html>

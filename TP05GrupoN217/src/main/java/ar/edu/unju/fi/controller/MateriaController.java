@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.model.Materia;
+import ar.edu.unju.fi.numerado.Modalidad;
+import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IDocenteService;
 import ar.edu.unju.fi.service.IMateriaService;
 
@@ -19,11 +21,18 @@ import ar.edu.unju.fi.service.IMateriaService;
 public class MateriaController {
 	@Autowired
 	IMateriaService materiaServiceIMP;
+	@Autowired
+	IDocenteService iDocenteServiceIMP;
+	@Autowired
+	ICarreraService iCarreraServiceIMP;
 	
 	@GetMapping("/nuevo")
 	public ModelAndView getFormMateria() {        //aqui el nombre del html
-		ModelAndView mov = new ModelAndView("materia");
+		ModelAndView mov = new ModelAndView("materia-form");
 		mov.addObject("materiaForm", new Materia());
+		mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
+		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras());
+		mov.addObject("modalidad",Modalidad.values());
 		mov.addObject("band", true);
 		return mov;	
 	}
@@ -43,6 +52,7 @@ public class MateriaController {
 		ModelAndView mov = new ModelAndView("materia-list");
 		mov.addObject("listaDeMaterias",materiaServiceIMP.listarMaterias());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
+		System.out.println(materiaServiceIMP.listarMaterias());
 		return mov;
 	}
 	
@@ -59,6 +69,9 @@ public class MateriaController {
 	public ModelAndView modificarMateria(@PathVariable("id")int id) {
 		ModelAndView mov = new ModelAndView("materia-form");
 		mov.addObject("materiaForm",materiaServiceIMP.buscarMateria(id));
+		mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
+		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras());
+		mov.addObject("modalidad",Modalidad.values());
 		mov.addObject("band", false);
 		return mov;
 	}

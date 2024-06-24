@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.IDocenteService;
 
@@ -22,7 +21,7 @@ public class DocenteController {
 	
 	@GetMapping("/nuevo")
 	public ModelAndView getFormDocente() {        //aqui el nombre del html
-		ModelAndView mov = new ModelAndView("docente");
+		ModelAndView mov = new ModelAndView("docente-form");
 		mov.addObject("docenteForm", new Docente());
 		mov.addObject("band", true);
 		return mov;	

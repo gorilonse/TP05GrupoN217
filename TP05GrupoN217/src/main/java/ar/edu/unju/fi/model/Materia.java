@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import ar.edu.unju.fi.numerado.Modalidad;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,10 +33,10 @@ public class Materia {
 		private String curso;
 		private String cantidadDeHora;   
 		private Modalidad modalidadDeHoraString;  //ENUMERADO
-		@OneToOne(cascade = CascadeType.ALL) 
+		@OneToOne
 		@JoinColumn(name = "doc_id")
 		private Docente docente; //del tipo Docente
-		@OneToOne(cascade = CascadeType.ALL) 
+		@OneToOne 
 		@JoinColumn(name = "car_id")
 		private Carrera carrera; //del tipo Carrera
 }

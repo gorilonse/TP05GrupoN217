@@ -21,15 +21,15 @@ public class CarreraController {
 	
 	@GetMapping("/nuevo")
 	public ModelAndView getFormCarrera() {        //aqui el nombre del html
-		ModelAndView mov = new ModelAndView("carrera");
+		ModelAndView mov = new ModelAndView("carrera-form");
 		mov.addObject("carreraForm", new Carrera());
 		mov.addObject("band", true);
 		return mov;	
 	}
 	
-	@PostMapping("/guardarCarrera")
+	@PostMapping("/guardarCarrera")      
 	public ModelAndView guardarCarrera(@ModelAttribute("carreraForm") Carrera auxCarrera) {
-		ModelAndView mov = new ModelAndView("redirect:/docente/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
+		ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
 		carreraServiceIMP.agregarCarrera(auxCarrera);
 		//AlumnoCollections.agregarObjeto(auxAlumno);
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());

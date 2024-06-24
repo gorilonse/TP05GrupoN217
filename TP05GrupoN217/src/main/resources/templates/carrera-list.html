@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TP4_SuarezDarioOscar</title>
+<link rel="stylesheet" type="text/css"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<meta name="viewport">
+</head>
+<body class="container">
+	<header data-th-replace="~{/layouts/header::header}"></header>
+
+	<main class="row">
+		<div class="mt-4 mb-4">
+			<div class="card mb-3 col-4	" data-th-each="l:${listaCarreras}">
+				<div class="row ">
+					<div class="col-md-4  bg-info">
+						<img src="..." class="img-fluid rounded-start" alt="">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"  data-th-text="${l.nombre}"></h5>
+							<p class="card-text" >Cantidad de Años: <span data-th-text="${l.cantidadDeAnios}"></span></p>
+							<p class="card-text">
+								<small class="text-muted">Estado <span data-th-text="${l.estado}"></span></small>
+								<small class="text-muted">Codigo <span data-th-text="${l.codigo}"></span></small>
+							</p>
+						</div>
+						  <div class="card-body">
+							<a data-th-href="@{'/carrera/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
+							<a data-th-href="@{'/carrera/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer data-th-replace="~{/layouts/footer::footer}"></footer>
+</body>
+</html>
