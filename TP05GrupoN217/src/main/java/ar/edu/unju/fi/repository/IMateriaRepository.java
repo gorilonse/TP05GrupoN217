@@ -2,10 +2,10 @@ package ar.edu.unju.fi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ar.edu.unju.fi.model.Docente;
 
+import ar.edu.unju.fi.model.Materia;
 
 @Repository
-public interface IDocenteRepository extends JpaRepository <Docente, Integer>{
+public interface IMateriaRepository extends JpaRepository<Materia, Integer>{
 
 }
