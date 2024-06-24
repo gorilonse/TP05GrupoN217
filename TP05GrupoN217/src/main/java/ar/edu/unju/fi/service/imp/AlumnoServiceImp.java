@@ -25,7 +25,6 @@ public class AlumnoServiceImp implements IAlumnoService {
 	@Override
 	public List<Alumno> listarAlumnos() {
 		// TODO Auto-generated method stub
-		
 		return ialumnoRepositorio.findAll();
 	}
 
