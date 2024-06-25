@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.dto.DocenteDto;
+import ar.edu.unju.fi.mapper.IDocenteMapDto;
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.repository.IDocenteRepository;
 import ar.edu.unju.fi.service.IDocenteService;
@@ -15,6 +17,8 @@ public class DocenteServiceImp implements IDocenteService{
 	@Autowired
 	IDocenteRepository idocenteRepositorio;
 	
+	@Autowired
+	IDocenteMapDto iDocenteMapDto;
 	
 	@Override
 	public void agregarDocente(Docente docente) {
@@ -49,6 +53,13 @@ public class DocenteServiceImp implements IDocenteService{
 		//Docente auxDocente = new Docente();
 		//auxDocente=buscarDocente(id);
 		//idocenteRepositorio.delete(auxDocente);
+	}
+
+	
+	@Override
+	public List<DocenteDto> listarDocenteDto() {
+		// TODO Auto-generated method stub
+		return iDocenteMapDto.convertirListaDocenteAlistaDocenteDto(listarDocentes());
 	}
 
 }

@@ -34,10 +34,13 @@ public class Materia {
 		private String curso;
 		private String cantidadDeHora;   
 		private Modalidad modalidadDeHoraString;  //ENUMERADO
-		@OneToOne ()
+		private String docente;
+		private String carrera;
+		/* @OneToOne ()
 		@JoinColumn(name = "doc_id",unique = true)
 		private Docente docente; //del tipo Docente
 		@OneToOne ()
 		@JoinColumn(name = "car_id",unique = true)
 		private Carrera carrera; //del tipo Carrera
+		*/
 }

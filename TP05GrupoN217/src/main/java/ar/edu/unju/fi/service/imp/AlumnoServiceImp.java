@@ -19,6 +19,7 @@ public class AlumnoServiceImp implements IAlumnoService {
 	IAlumnoRepository ialumnoRepositorio;
 	@Autowired
 	IAlumnoMapDto iAlumnoMapDto;
+	
 	@Override
 	public void agregarAlumno(Alumno alumno) {
 		// TODO Auto-generated method stub
@@ -55,6 +56,7 @@ public class AlumnoServiceImp implements IAlumnoService {
 		ialumnoRepositorio.delete(auxAlumno);
 	}
 
+	//LO NUEVO DE DTO abajo
 	@Override
 	public List<AlumnoDto> listarAlumnoDto() {
 		// TODO Auto-generated method stub

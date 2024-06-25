@@ -20,8 +20,8 @@
 						<th scope="col">Legajo</th>
 						<th scope="col">Apellido</th>
 						<th scope="col">Nombre</th>
-						<th scope="col">Teléfono</th>
-						<th scope="col">Email</th>
+						<!--  <th scope="col">Teléfono</th>
+						<th scope="col">Email</th>  -->
 					</tr>
 				</thead>
 				<tbody>
@@ -29,8 +29,8 @@
 						<th scope="row" data-th-text="${l.legajo}"></th>
 						<td data-th-text="${l.apellido}"></td>
 						<td data-th-text="${l.nombre}"></td>
-						<td data-th-text="${l.telefono}"></td>
-						<td data-th-text="${l.email}"></td>
+						<!--   <td data-th-text="${l.telefono}"></td>
+						<td data-th-text="${l.email}"></td> -->
 						<td>
 							<a data-th-href="@{'/docente/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
 							<a data-th-href="@{'/docente/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>

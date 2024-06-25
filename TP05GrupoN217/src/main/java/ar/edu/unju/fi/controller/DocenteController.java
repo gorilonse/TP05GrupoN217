@@ -40,7 +40,8 @@ public class DocenteController {
 	@GetMapping("/lista")
 	public ModelAndView getListaDocente() {
 		ModelAndView mov = new ModelAndView("docente-list");
-		mov.addObject("listaDeDocentes",docenteServiceIMP.listarDocentes());
+		//mov.addObject("listaDeDocentes",docenteServiceIMP.listarDocentes());
+		mov.addObject("listaDeDocentes",docenteServiceIMP.listarDocenteDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		return mov;
 	}

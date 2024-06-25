@@ -12,6 +12,7 @@ public interface IAlumnoService {
 	public Alumno buscarAlumno(int _id);
 	public void modificarAlumno(Alumno alumno, int _id);
 	public void eliminarAlumno(int _id);
-	public List<AlumnoDto> listarAlumnoDto();
+	
+	public List<AlumnoDto> listarAlumnoDto(); //aqui modifico cuando ago el DTO
 	
 }

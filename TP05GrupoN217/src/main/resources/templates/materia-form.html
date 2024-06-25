@@ -39,17 +39,16 @@
 				<div class=mb-3>
 					<label for=docente class=form-label>Docente</label>
 					 <select
-						id="docente" class=form-control data-th-field="*{docente.legajo}">
+						id="docente" class=form-control data-th-field="*{docente}">
 						<option data-th-each="d:${listaDocentes}"
-							data-th-value="${d.legajo}" data-th-text="${d.apellido}"></option>
+							data-th-value="${d.apellido}" data-th-text="${d.apellido}"></option>
 					</select>
 				</div>
 				<div class=mb-3>
-					<label for=carrera class=form-label>Carrera</label>
-					<label for=carrera class=form-label>Carrera</label> <select
-						id="carrera" class=form-control data-th-field="*{carrera.codigo}">
+					   <label for=carrera class=form-label>Carrera</label> <select
+						id="carrera" class=form-control data-th-field="*{carrera}">
 						<option data-th-each="d:${listaCarreras}"
-							data-th-value="${d.codigo}" data-th-text="${d.nombre}"></option>
+							data-th-value="${d.nombre}" data-th-text="${d.nombre}"></option>
 					</select>
 				</div>
 				<div class=mb-3>
