@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.dto.MateriaDto;
+import ar.edu.unju.fi.mapper.IMateriaMapDto;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.IMateriaRepository;
 import ar.edu.unju.fi.service.IMateriaService;
@@ -14,6 +16,9 @@ public class MateriaServiceImp implements IMateriaService{
 	
 	@Autowired
 	IMateriaRepository imateriaRepositorio;
+	
+	@Autowired
+	IMateriaMapDto iMateriaMapDto;
 	
 	@Override
 	public void agregarMateria(Materia materia) {
@@ -49,5 +54,15 @@ public class MateriaServiceImp implements IMateriaService{
 		imateriaRepositorio.delete(auxMateria);
 	}
 
+	//LO NUEVO DE DTO abajo
+	@Override
+	public List<MateriaDto> listarMateriasDto() {
+		// TODO Auto-generated method stub
+		return iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMaterias());
+	}
+	
+	
+	
+	
 	
 }

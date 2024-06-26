@@ -50,7 +50,8 @@ public class MateriaController {
 	@GetMapping("/lista")
 	public ModelAndView getListaMateria() {
 		ModelAndView mov = new ModelAndView("materia-list");
-		mov.addObject("listaDeMaterias",materiaServiceIMP.listarMaterias());
+		//mov.addObject("listaDeMaterias",materiaServiceIMP.listarMaterias());
+		mov.addObject("listaDeMaterias",materiaServiceIMP.listarMateriasDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		System.out.println(materiaServiceIMP.listarMaterias());
 		return mov;

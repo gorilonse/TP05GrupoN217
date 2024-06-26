@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service;
 import java.util.List;
+
+import ar.edu.unju.fi.dto.MateriaDto;
 import ar.edu.unju.fi.model.Materia;
 
 
@@ -11,4 +13,5 @@ public interface IMateriaService {
 	public void modificarMateria(Materia materia, int id);
 	public void eliminarMateria(int id);
 	
+	public List<MateriaDto> listarMateriasDto();
 }

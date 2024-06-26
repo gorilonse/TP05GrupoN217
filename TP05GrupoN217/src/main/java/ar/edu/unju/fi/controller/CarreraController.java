@@ -41,7 +41,7 @@ public class CarreraController {
 	public ModelAndView getListaCarrera() {
 		ModelAndView mov = new ModelAndView("carrera-list");
 		//mov.addObject("listaCarreras",carreraServiceIMP.listarCarreras());
-		mov.addObject("listaDeCarreras",carreraServiceIMP.listarCarreraDto());
+		mov.addObject("listaCarreras",carreraServiceIMP.listarCarreraDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		return mov;
 	}
