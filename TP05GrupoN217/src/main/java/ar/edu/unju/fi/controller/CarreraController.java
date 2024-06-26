@@ -41,6 +41,7 @@ public class CarreraController {
 	public ModelAndView getListaCarrera() {
 		ModelAndView mov = new ModelAndView("carrera-list");
 		//mov.addObject("listaCarreras",carreraServiceIMP.listarCarreras());
+		             //"listaCarreras" se vincula a la vista "HTML"
 		mov.addObject("listaCarreras",carreraServiceIMP.listarCarreraDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		return mov;
