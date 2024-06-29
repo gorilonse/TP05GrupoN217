@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.dto.CarreraDto;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.ICarreraService;
 
@@ -18,11 +19,13 @@ public class CarreraController {
 	
 	@Autowired
 	ICarreraService carreraServiceIMP;
+	@Autowired
+	CarreraDto carreraDto;
 	
 	@GetMapping("/nuevo")
 	public ModelAndView getFormCarrera() {        //aqui el nombre del html
 		ModelAndView mov = new ModelAndView("carrera-form");
-		mov.addObject("carreraForm", new Carrera());
+		mov.addObject("carreraForm", carreraDto);
 		mov.addObject("band", true);
 		return mov;	
 	}
@@ -42,10 +45,19 @@ public class CarreraController {
 		ModelAndView mov = new ModelAndView("carrera-list");
 		//mov.addObject("listaCarreras",carreraServiceIMP.listarCarreras());
 		             //"listaCarreras" se vincula a la vista "HTML"
-		mov.addObject("listaCarreras",carreraServiceIMP.listarCarreraDto());
+		mov.addObject("listaCarreras",carreraServiceIMP.listarCarreraDto(true));
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		return mov;
 	}
+	
+	@GetMapping("/listarInactivas")
+    public ModelAndView listarCarrerasInactivas() {
+       
+        ModelAndView mov = new ModelAndView("carrera-list");
+        mov.addObject("listaCarreras", carreraServiceIMP.listarCarreraDto(false));
+        return mov;
+    }
+
 	
 
 	@GetMapping("/eliminar/{id}")
@@ -65,10 +77,10 @@ public class CarreraController {
 	}
 	@PostMapping("/modificarCarrera")
 	public ModelAndView modificarCarrera(@ModelAttribute("carreraForm") Carrera carrera) {
+	
 		ModelAndView mov = new ModelAndView("redirect:/carrera/lista");	
-		System.out.println("id carrera mod");
-		System.out.println(carrera);
-		carreraServiceIMP.modificarCarrera(carrera, carrera.getId());
+		
+		carreraServiceIMP.modificarCarrera(carrera);
 		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
 		return mov;
 	}
