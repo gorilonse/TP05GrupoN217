@@ -22,14 +22,14 @@ public class CarreraServiceImp implements ICarreraService{
 	
 	@Override
 	public void agregarCarrera(Carrera carrera) {
-		// TODO Auto-generated method stub
+		
 		iCarreraRepositorio.save(carrera);
 	}
 
 	@Override
-	public List<Carrera> listarCarreras() {
+	public List<Carrera> listarCarreras(boolean estado) {
 		// TODO Auto-generated method stub
-		return iCarreraRepositorio.findAll();
+		return iCarreraRepositorio.findCarreraByEstado(estado);
 	}
 
 	@Override
@@ -39,25 +39,33 @@ public class CarreraServiceImp implements ICarreraService{
 	}
 
 	@Override
-	public void modificarCarrera(Carrera carrera, int id) {
-		// TODO Auto-generated method stub
-		iCarreraRepositorio.save(carrera);
+	public void modificarCarrera(Carrera carrera) {
+		
+		iCarreraRepositorio.updateCarrera(31, carrera.isEstado(), carrera.getCantidadDeAnios(), carrera.getNombre());
+		//iCarreraRepositorio.save(carrera);
 	}
 
 	@Override
 	public void eliminarCarrera(int id) {
-		// TODO Auto-generated method stub
-		Carrera auxCarrera = new Carrera();
-		auxCarrera=buscarCarrera(id);
-		System.out.println(auxCarrera);
-		iCarreraRepositorio.delete(auxCarrera);
+		
+//		Carrera auxCarrera = new Carrera();
+//		auxCarrera=buscarCarrera(id);
+//		System.out.println(auxCarrera);
+//		iCarreraRepositorio.delete(auxCarrera);
+		
+		Carrera carrera = iCarreraRepositorio.findById(id).orElse(null);
+		System.out.println(carrera.getNombre());
+		if (carrera != null) {
+			carrera.setEstado(false); 
+			iCarreraRepositorio.save(carrera);
+		}
 		
 	}
 
 	@Override
-	public List<CarreraDto> listarCarreraDto() {
+	public List<CarreraDto> listarCarreraDto(boolean estado) {
 		// TODO Auto-generated method stub
-		return iCarreraMapDto.convertirListaCarreraAlistaCarreraDto(listarCarreras());
+		return iCarreraMapDto.convertirListaCarreraAlistaCarreraDto(listarCarreras(estado));
 	}
 	
 	
