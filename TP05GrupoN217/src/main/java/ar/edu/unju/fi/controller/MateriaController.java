@@ -31,7 +31,7 @@ public class MateriaController {
 		ModelAndView mov = new ModelAndView("materia-form");
 		mov.addObject("materiaForm", new Materia());
 		mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
-		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras());
+		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
 		mov.addObject("modalidad",Modalidad.values());
 		mov.addObject("band", true);
 		return mov;	
@@ -71,7 +71,7 @@ public class MateriaController {
 		ModelAndView mov = new ModelAndView("materia-form");
 		mov.addObject("materiaForm",materiaServiceIMP.buscarMateria(id));
 		mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
-		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras());
+		mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
 		mov.addObject("modalidad",Modalidad.values());
 		mov.addObject("band", false);
 		return mov;

@@ -3,10 +3,14 @@ package ar.edu.unju.fi.model;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,4 +34,9 @@ public class Alumno {
 		private LocalDate fechaNacimineto;
 		private String domicilio;
 		private String LU;
+		
+		@ManyToOne(cascade=CascadeType.ALL)
+		@JoinColumn(name="id_carrera")
+		private Carrera carrera;
+		
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Carreras</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Lista de Carreras</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Duración</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="carrera : ${listadoCarreras}">
+                    <td th:text="${carrera.codigo}"></td>
+                    <td th:text="${carrera.nombre}"></td>
+                    <td th:text="${carrera.duracion}"></td>
+                    <td th:text="${carrera.estado != null ? (carrera.estado ? 'Activo' : 'Inactivo') : 'Inactivo'}"></td>
+                    <td>
+                        <a th:href="@{/modificarCarrera/{codigo}(codigo=${carrera.codigo})}" class="btn btn-warning">Modificar</a>
+                        <form th:action="@{/eliminarCarrera/{codigo}(codigo=${carrera.codigo})}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
+
+

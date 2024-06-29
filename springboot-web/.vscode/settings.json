@@ -1,0 +1,5 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "editor.inlayHints.enabled": "off",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

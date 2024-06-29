@@ -25,7 +25,7 @@ public class CarreraController {
 	@GetMapping("/nuevo")
 	public ModelAndView getFormCarrera() {        //aqui el nombre del html
 		ModelAndView mov = new ModelAndView("carrera-form");
-		mov.addObject("carreraForm", new Carrera());
+		mov.addObject("carreraForm", carreraDto);
 		mov.addObject("band", true);
 		return mov;	
 	}
