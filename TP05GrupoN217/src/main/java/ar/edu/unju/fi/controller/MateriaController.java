@@ -53,7 +53,7 @@ public class MateriaController {
 		//mov.addObject("listaDeMaterias",materiaServiceIMP.listarMaterias());
 		mov.addObject("listaDeMaterias",materiaServiceIMP.listarMateriasDto());
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
-		System.out.println(materiaServiceIMP.listarMaterias());
+		
 		return mov;
 	}
 	

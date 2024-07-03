@@ -18,9 +18,10 @@ public interface ICarreraRepository extends JpaRepository<Carrera, Integer>{
 	
 	@Modifying
     @Transactional
-    @Query("UPDATE Carrera c SET c.estado = :estado, c.cantidadDeAnios = :cantidadDeAnios, c.nombre = :nombre WHERE c.id = :id")
+    @Query("UPDATE Carrera c SET c.codigo = :codigo,c.estado = :estado, c.cantidadDeAnios = :cantidadDeAnios, c.nombre = :nombre WHERE c.id = :id")
     int updateCarrera(@Param("id") int id,
-                      @Param("estado") boolean estado,
-                      @Param("cantidadDeAnios") String cantidadDeAnios,
+            		  @Param("codigo") String codigo,
+            		  @Param("estado") boolean estado,
+                      @Param("cantidadDeAnios") int i,
                       @Param("nombre") String nombre);
 }

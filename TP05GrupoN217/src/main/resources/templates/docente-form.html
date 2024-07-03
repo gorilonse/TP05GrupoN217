@@ -18,11 +18,14 @@
 			<!--                          MetodoQueSeEfecutaAlPresionarBoton     -->
 			<form data-th-object="${docenteForm}"
 				data-th-action="${band}?@{/docente/guardarDocente}:@{/docente/modificarDocente}" method="post">
+				<div class=mb-3 data-th-if=!${band}>
+				 <label for=id class=form-label>ID</label>
+				 <input type="number" class=form-control id=id data-th-field=*{id} readonly>
+				 </div>
 				<div class=mb-3>
-					<label for=legajo class=form-label>Legajo</label> <input th:readonly="!${band}"
+					<label for=legajo class=form-label>Legajo</label> <input
 						type="text" class=form-control id=legajo data-th-field=*{legajo}
 						required aria-describedby=ayudaLeg>
-						<div id=ayudaLeg class=form-text th:if="!${band}">No puede modificar el Legajo</div>
 				</div>
 				<div class=mb-3>
 					<label for=nombre class=form-label>Nombre</label> <input required

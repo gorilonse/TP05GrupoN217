@@ -60,6 +60,18 @@ public class MateriaServiceImp implements IMateriaService{
 		// TODO Auto-generated method stub
 		return iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMaterias());
 	}
+
+	@Override
+	public List<Materia> listarMateriasPorCarrera(int carreraId) {
+		// TODO Auto-generated method stub
+		return imateriaRepositorio.findByCarrera(carreraId);
+	}
+
+	@Override
+	public List<MateriaDto> listarMateriasPorCarreraDto(int carreraId) {
+		// TODO Auto-generated method stub
+		return  iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMateriasPorCarrera(carreraId));
+	}
 	
 	
 	

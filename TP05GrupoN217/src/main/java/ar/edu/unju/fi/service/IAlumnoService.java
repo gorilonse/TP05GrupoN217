@@ -12,7 +12,14 @@ public interface IAlumnoService {
 	public Alumno buscarAlumno(int _id);
 	public void modificarAlumno(Alumno alumno, int _id);
 	public void eliminarAlumno(int _id);
-	
+	public void inscribirAlumnoAMateria(int alumnoId, int materiaId);
 	public List<AlumnoDto> listarAlumnoDto(); //aqui modifico cuando ago el DTO
 	
+	
+
+	public List<Alumno> listarAlumnosPorCarrera(int carreraId);
+	public List<Alumno> listarAlumnosPorMateria(int materiaId);
+	
+	public List<AlumnoDto> listarAlumnosPorCarreraDto(int carreraId);
+	public List<AlumnoDto> listarAlumnosPorMateriaDto(int materiaId);
 }

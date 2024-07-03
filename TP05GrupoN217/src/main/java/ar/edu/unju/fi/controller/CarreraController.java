@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,13 +32,17 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardarCarrera")      
-	public ModelAndView guardarCarrera(@ModelAttribute("carreraForm") Carrera auxCarrera) {
-		ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-		carreraServiceIMP.agregarCarrera(auxCarrera);
-		//AlumnoCollections.agregarObjeto(auxAlumno);
-		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
-		//System.out.println(auxAlumno);
-		return mov;
+	public ModelAndView guardarCarrera(@ModelAttribute("carreraForm") Carrera auxCarrera, BindingResult result)throws Exception {
+		//ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
+        
+        ModelAndView mav;
+        if(result.hasErrors()) {
+        	mav= new ModelAndView("carrera-form");
+        }else {
+        	carreraServiceIMP.agregarCarrera(auxCarrera);
+        	mav= new ModelAndView("redirect:/carrera/lista");
+        }
+        return mav;
 	}
 	
 	@GetMapping("/lista")

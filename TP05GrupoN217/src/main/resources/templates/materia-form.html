@@ -18,10 +18,15 @@
 			<!--                          MetodoQueSeEfecutaAlPresionarBoton     -->
 			<form data-th-object="${materiaForm}"
 				data-th-action="${band}?@{/materia/guardarMateria}:@{/materia/modificarMateria}" method="post">
+				<div class=mb-3 th:if="!${band}">
+					<label for=id class=form-label>Id</label> <input th:readonly="!${band}"
+						type="number" class=form-control id=id data-th-field=*{id} aria-describedby=ayudaCod>
+						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el id</div>
+				</div>
 				<div class=mb-3>
-					<label for=codigo class=form-label>Codigo</label> <input required th:readonly="!${band}"
+					<label for=codigo class=form-label>Codigo</label> <input
 						type="number" class=form-control id=codigo data-th-field=*{codigo} aria-describedby=ayudaCod>
-						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el Código</div>
+						
 				</div>
 				<div class=mb-3>
 					<label for=nombre class=form-label>Nombre</label> <input required
@@ -39,16 +44,16 @@
 				<div class=mb-3>
 					<label for=docente class=form-label>Docente</label>
 					 <select
-						id="docente" class=form-control data-th-field="*{docente}">
+						id="docente" class=form-control data-th-field="*{docente.id}">
 						<option data-th-each="d:${listaDocentes}"
-							data-th-value="${d.apellido}" data-th-text="${d.apellido}"></option>
+							data-th-value="${d.id}" data-th-text="${d.id}"></option>
 					</select>
 				</div>
 				<div class=mb-3>
 					   <label for=carrera class=form-label>Carrera</label> <select
-						id="carrera" class=form-control data-th-field="*{carrera}">
-						<option data-th-each="d:${listaCarreras}"
-							data-th-value="${d.nombre}" data-th-text="${d.nombre}"></option>
+						id="carrera" class=form-control data-th-field="*{carrera.id}">
+						<option data-th-each="c:${listaCarreras}"
+							data-th-value="${c.id}" data-th-text="${c.nombre}"></option>
 					</select>
 				</div>
 				<div class=mb-3>

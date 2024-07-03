@@ -13,5 +13,8 @@ public interface IMateriaService {
 	public void modificarMateria(Materia materia, int id);
 	public void eliminarMateria(int id);
 	
+	public List<Materia>listarMateriasPorCarrera(int carreraId);
+	
 	public List<MateriaDto> listarMateriasDto();
+	public List<MateriaDto>listarMateriasPorCarreraDto(int carreraId);
 }

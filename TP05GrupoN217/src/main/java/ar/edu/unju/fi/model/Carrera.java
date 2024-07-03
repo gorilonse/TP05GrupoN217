@@ -12,6 +12,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,15 +35,22 @@ public class Carrera {
 	@Id
 	@Column(name = "car_id")
 	private int id;
+	@NotBlank(message="Debe ingresar el Codigo")
+	@Size(min=3,max=8, message="El código debe poseer como minimo 3 digitos y como maximo 8 dígitos")
 	private String codigo;
+	@NotBlank(message="Debe ingresar nombre")
+	@Size(min=2, max=40,message="El nombre no puede llevar menos de 2 caracteres y más de 30 caracteres")
+	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
 	private String nombre;
-	private String cantidadDeAnios;
+	
+	@Min(value=3,message="El mínimo es 3")@Max(value=8, message="El máximo es 8")
+	private int cantidadDeAnios;
 	private boolean estado;
 	
-	@OneToMany(targetEntity = Alumno.class, fetch = FetchType.LAZY, mappedBy = "carrera", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity = Alumno.class, fetch = FetchType.LAZY, mappedBy = "carrera")
 	private List<Alumno> alumnos;
 	
-	@OneToMany(targetEntity = Materia.class, fetch = FetchType.LAZY, mappedBy = "carrera", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity = Materia.class, fetch = FetchType.LAZY, mappedBy = "carrera")
 	private List<Materia> materias;
 
 	

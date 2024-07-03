@@ -16,7 +16,7 @@
 			<form data-th-object="${alumnoForm}" data-th-action="${band}?@{/alumno/guardarAlumno}:@{/alumno/modificarAlumno}"  method="post">
 				 <div class=mb-3 data-th-if=!${band}>
 				 <label for=id class=form-label>ID</label>
-				 <input type="number" class=form-control id=dni data-th-field=*{id} readonly>
+				 <input type="number" class=form-control id=id data-th-field=*{id} readonly>
 				 </div>
 				 <div class=mb-3>
 				 <label for=dni class=form-label>DNI</label>
@@ -50,6 +50,13 @@
 				 <input type="text" class=form-control id=domicilio aria-describedby=ayudadomicilio data-th-field=*{domicilio}>
 				 <div id=ayudadomicilio class=form-text>Ingresa la calle, numero de casa, sector y barrio.</div>
 				 </div>
+				 <div class=mb-3>
+					   <label for=carrera class=form-label>Carrera</label> <select
+						id="carrera" class=form-control data-th-field="*{carrera}">
+						<option data-th-each="d:${listaCarreras}"
+							data-th-value="${d.id}" data-th-text="${d.nombre}"></option>
+					</select>
+				</div>
 				 <div class=mb-3>
 				 <label for=lu class=form-label>LU</label>
 				 <input type="text" class=form-control id=lu aria-describedby=ayudaLu data-th-field=*{LU}>

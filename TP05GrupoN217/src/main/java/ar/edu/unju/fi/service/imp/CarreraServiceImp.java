@@ -41,7 +41,7 @@ public class CarreraServiceImp implements ICarreraService{
 	@Override
 	public void modificarCarrera(Carrera carrera) {
 		
-		iCarreraRepositorio.updateCarrera(31, carrera.isEstado(), carrera.getCantidadDeAnios(), carrera.getNombre());
+		iCarreraRepositorio.updateCarrera(carrera.getId(),carrera.getCodigo(), carrera.isEstado(), carrera.getCantidadDeAnios(), carrera.getNombre());
 		//iCarreraRepositorio.save(carrera);
 	}
 
