@@ -7,9 +7,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import ar.edu.unju.fi.dto.MateriaDto;
-import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.model.Materia;
-import ar.edu.unju.fi.numerado.Modalidad;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface IMateriaMapDto {

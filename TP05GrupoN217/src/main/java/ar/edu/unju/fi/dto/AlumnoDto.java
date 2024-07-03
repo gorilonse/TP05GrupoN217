@@ -1,10 +1,7 @@
 package ar.edu.unju.fi.dto;
 
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Alumno;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
