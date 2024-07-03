@@ -24,6 +24,7 @@ public class AlumnoServiceImp implements IAlumnoService {
 	public void agregarAlumno(Alumno alumno) {
 		// TODO Auto-generated method stub
 		ialumnoRepositorio.save(alumno);
+		
 	}
 
 	@Override
