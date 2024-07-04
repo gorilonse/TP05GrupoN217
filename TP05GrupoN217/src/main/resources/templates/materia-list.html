@@ -13,6 +13,7 @@
 	<header data-th-replace="~{/layouts/header::header}"></header>
 	<main class="row">
 		<div class="mt-4 mb-4">
+		<div class="text-danger" data-th-if="${banderror}" data-th-text="*{messageError}"></div>
 			<div class="card mb-3 col-12	" data-th-each="l:${listaDeMaterias}">
 				<div class="row ">
 					<div class="col-md-4  bg-info">

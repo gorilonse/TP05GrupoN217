@@ -54,8 +54,8 @@ public class Materia {
 		@Size(min=2, max=40,message="El curso no puede llevar menos de 2 caracteres y más de 40 caracteres")
 		private String curso;
 		
-		@Pattern(regexp = "\\d+", message = "La cantidad de horas debe ser un número")
-		@Min(100)@Max(1000)
+		@Pattern(regexp = "\\d+", message = "La cantidad de horas debe ser numerico")
+		@Min(10)@Max(100)
 		private String cantidadDeHora;   
 		
 		@NotNull(message="Debe seleccionar una modalidad")

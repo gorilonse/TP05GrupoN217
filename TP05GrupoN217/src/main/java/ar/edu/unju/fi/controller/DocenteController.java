@@ -39,7 +39,13 @@ public class DocenteController {
 			mov.addObject("band", true);
 		}else {
 			mov = new ModelAndView("redirect:/docente/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-			docenteServiceIMP.agregarDocente(auxDocente);
+			
+			try {
+				docenteServiceIMP.agregarDocente(auxDocente);
+			} catch (Exception e) {
+				// TODO: handle exception
+				
+			}
 		}
 		return mov;
 	}

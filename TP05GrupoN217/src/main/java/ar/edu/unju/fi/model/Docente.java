@@ -51,7 +51,7 @@ public class Docente {
 	
 
 	@Pattern(regexp = "\\d+", message = "El telefono debe ser númerico")
-	@Size(min=10, max=12,message="El telefono no puede llevar menos de 10 caracteres y más de 12 caracteres")
+	@Size(min=7, max=15,message="El telefono puede llevar entre 7 y 15 caracteres")
 	private String telefono;
 	//@OneToOne(mappedBy = "docente",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	//private Materia materia;
