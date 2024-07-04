@@ -1,5 +1,11 @@
 package ar.edu.unju.fi.controller;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
+import org.hibernate.engine.spi.ManagedEntity;
+import org.hibernate.event.internal.PostDeleteEventListenerStandardImpl;
+import org.hibernate.sql.ast.tree.from.CorrelatedPluralTableGroup;
+import org.springframework.aop.config.AbstractInterceptorDrivenBeanDefinitionDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,7 +43,7 @@ public class MateriaController {
 		mov.addObject("modalidad",Modalidad.values());
 		mov.addObject("band", true);
 		return mov;	
-	}
+	} 
 	
 	@PostMapping("/guardarMateria")
 	public ModelAndView guardarMateria(@Valid @ModelAttribute("materiaForm") Materia auxMateria, BindingResult result) {
@@ -48,6 +54,9 @@ public class MateriaController {
 		if(result.hasErrors()) {
 			mov = new ModelAndView("materia-form");
 			mov.addObject("band", true);
+			mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
+			mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
+			mov.addObject("modalidad",Modalidad.values());
 		}else {
 			materiaServiceIMP.agregarMateria(auxMateria);
 			mov = new ModelAndView("redirect:/materia/lista");
@@ -98,7 +107,10 @@ public class MateriaController {
 		ModelAndView mov;
 		if(result.hasErrors()) {
 			mov = new ModelAndView("materia-form");
-			mov.addObject("band", true);
+			mov.addObject("listaDocentes",iDocenteServiceIMP.listarDocentes());
+			mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
+			mov.addObject("modalidad",Modalidad.values());
+			mov.addObject("band", false); // TRUE crea un nuevo elemento pero en FALSE permite modificar/Corregir el error, ver el HTML
 		}else {
 			materiaServiceIMP.modificarMateria(materia, materia.getId());
 			mov = new ModelAndView("redirect:/materia/lista");	

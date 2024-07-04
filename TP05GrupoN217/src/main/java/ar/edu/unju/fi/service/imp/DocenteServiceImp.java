@@ -1,9 +1,12 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.awt.image.ColorModel;
+import java.security.interfaces.ECPrivateKey;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.event.internal.DefaultInitializeCollectionEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,10 +55,15 @@ public class DocenteServiceImp implements IDocenteService{
 	}
 
 	@Override
-	public void eliminarDocente(int id) {
+	public void eliminarDocente(int id){
 		// TODO Auto-generated method stub
 		LOGGER.info("docente a eliminar "+idocenteRepositorio.findById(id).orElse(null));
-		idocenteRepositorio.delete(buscarDocente(id));
+		try {
+			idocenteRepositorio.delete(buscarDocente(id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			//no funciono throw new Exception("No se peude eliminar un Docente que esta asignado/asociado a una Materia",e.getMessage());
+		}
 		//Docente auxDocente = new Docente();
 		//auxDocente=buscarDocente(id);
 		//idocenteRepositorio.delete(auxDocente);

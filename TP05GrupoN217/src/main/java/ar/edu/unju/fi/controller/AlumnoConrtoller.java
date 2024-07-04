@@ -5,6 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
+import org.hibernate.metamodel.mapping.ForeignKeyDescriptor.Side;
+import org.hibernate.sql.exec.internal.AbstractJdbcOperationQueryInsert;
+import org.hibernate.usertype.internal.AbstractTimeZoneStorageCompositeUserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.yaml.snakeyaml.Yaml;
 
 import ar.edu.unju.fi.dto.AlumnoDto;
 import ar.edu.unju.fi.model.Alumno;
@@ -86,12 +92,21 @@ public class AlumnoConrtoller {
 		return mov;
 	}
 	@PostMapping("/modificarAlumno")
-	public ModelAndView modificarAlumno(@ModelAttribute("alumnoForm") Alumno alumno) {
-		ModelAndView mov = new ModelAndView("redirect:/alumno/lista");
+	public ModelAndView modificarAlumno(@Valid @ModelAttribute("alumnoForm") Alumno alumno, BindingResult result) {
+		//ModelAndView mov = new ModelAndView("redirect:/alumno/lista"); 
+		ModelAndView mov;
 		System.out.println("id alumno mod");
 		System.out.println(alumno);
-		alumnoServiceIMP.modificarAlumno(alumno, alumno.getId());
+		//alumnoServiceIMP.modificarAlumno(alumno, alumno.getId());
 		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
+		if(result.hasErrors()) {
+			mov=new ModelAndView("alumno");
+			mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
+			mov.addObject("band", false);
+		}else {
+			alumnoServiceIMP.modificarAlumno(alumno, alumno.getId());
+			mov=new ModelAndView("redirect:/alumno/lista"); 
+		}
 		return mov;
 	}
 	

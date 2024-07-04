@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.IDocenteService;
@@ -54,10 +55,16 @@ public class DocenteController {
 	
 
 	@GetMapping("/eliminar/{id}")
-	public ModelAndView eliminarDocente(@PathVariable("id")int _id) {
+	public ModelAndView eliminarDocente(@PathVariable("id") int _id, RedirectAttributes redirec) {
 		ModelAndView mov = new ModelAndView("redirect:/docente/lista");
-		docenteServiceIMP.eliminarDocente(_id);
+		//docenteServiceIMP.eliminarDocente(_id);
 		//AlumnoCollections.eliminarObjeto(dni);
+		try {
+			docenteServiceIMP.eliminarDocente(_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			redirec.addFlashAttribute("errormensaje",e.getMessage());
+		}
 		return mov;
 	}
 	
