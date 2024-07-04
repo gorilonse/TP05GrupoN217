@@ -19,7 +19,7 @@ import ar.edu.unju.fi.service.IAlumnoService;
 @Service //indicamos que funciona como servicio.
 public class AlumnoServiceImp implements IAlumnoService {
 
-	public final static Log LOGGER = LogFactory.getLog("AlumnoServiceImp");
+	// public final static Log //LOGGER = LogFactory.getLog("AlumnoServiceImp");
 	
 	
 	@Autowired  //esto indica q se usa inyeccion de dependencia.
@@ -33,28 +33,28 @@ public class AlumnoServiceImp implements IAlumnoService {
 	@Override
 	public void agregarAlumno(Alumno alumno) {
 		ialumnoRepositorio.save(alumno);
-		LOGGER.info("alumno guardado "+alumno);
+		//LOGGER.info("alumno guardado "+alumno);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnos() {
-		LOGGER.info("alumnos listados "+ialumnoRepositorio.findAll());
+		//LOGGER.info("alumnos listados "+ialumnoRepositorio.findAll());
 		return ialumnoRepositorio.findAll();
 	}
 
 	@Override
 	public Alumno buscarAlumno(int id) {
 
-		LOGGER.info("alumno buscado "+ialumnoRepositorio.findById(id).orElse(null));
+		//LOGGER.info("alumno buscado "+ialumnoRepositorio.findById(id).orElse(null));
 		return ialumnoRepositorio.findById(id).orElse(null);
 	}
 
 	@Override
 	public void modificarAlumno(Alumno alumno, int id) {
 		alumno.setId(id);
-		LOGGER.info("alumno a modificar "+alumno);
+		//LOGGER.info("alumno a modificar "+alumno);
 		ialumnoRepositorio.save(alumno);
-		LOGGER.info("alumno modificado "+ialumnoRepositorio.findById(id).orElse(null));
+		//LOGGER.info("alumno modificado "+ialumnoRepositorio.findById(id).orElse(null));
 
 	}
 
@@ -63,14 +63,14 @@ public class AlumnoServiceImp implements IAlumnoService {
 		Alumno auxAlumno = new Alumno();
 		auxAlumno=buscarAlumno(id);
 		System.out.println(auxAlumno);
-		LOGGER.info("alumno eliminar "+ialumnoRepositorio.findById(id).orElse(null));
+		//LOGGER.info("alumno eliminar "+ialumnoRepositorio.findById(id).orElse(null));
 		ialumnoRepositorio.delete(auxAlumno);
 	}
 
 	//LO NUEVO DE DTO abajo
 	@Override
 	public List<AlumnoDto> listarAlumnoDto() {
-		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos()));
+		//LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos()));
 		return iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos());
 	}
 
@@ -79,33 +79,33 @@ public class AlumnoServiceImp implements IAlumnoService {
 		Alumno alumno = ialumnoRepositorio.findById(alumnoId).orElse(null);
 	    Materia materia = materiaRepository.findById(materiaId).orElse(null);
 
-		LOGGER.info("alumno "+ialumnoRepositorio.findById(alumnoId).orElse(null));
-		LOGGER.info("materia "+materiaRepository.findById(materiaId).orElse(null));
+		//LOGGER.info("alumno "+ialumnoRepositorio.findById(alumnoId).orElse(null));
+		//LOGGER.info("materia "+materiaRepository.findById(materiaId).orElse(null));
 	    alumno.getMaterias().add(materia);
 	    ialumnoRepositorio.save(alumno);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnosPorCarrera(int carreraId) {
-		LOGGER.info("alumnos listados "+ialumnoRepositorio.findByCarreraId(carreraId));
+		//LOGGER.info("alumnos listados "+ialumnoRepositorio.findByCarreraId(carreraId));
 		return ialumnoRepositorio.findByCarreraId(carreraId);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnosPorMateria(int materiaId) {
-		LOGGER.info("alumnos listados "+ialumnoRepositorio.findByMateriaId(materiaId));
+		//LOGGER.info("alumnos listados "+ialumnoRepositorio.findByMateriaId(materiaId));
 		return ialumnoRepositorio.findByMateriaId(materiaId);
 	}
 
 	@Override
 	public List<AlumnoDto> listarAlumnosPorCarreraDto(int carreraId) {
-		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(carreraId)));
+		//LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(carreraId)));
 		return iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(carreraId));
 	}
 
 	@Override
 	public List<AlumnoDto> listarAlumnosPorMateriaDto(int materiaId) {
-		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(materiaId)));
+		//LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(materiaId)));
 		return  iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(materiaId));
 	}
 

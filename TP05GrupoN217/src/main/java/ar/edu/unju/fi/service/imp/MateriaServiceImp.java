@@ -16,7 +16,7 @@ import ar.edu.unju.fi.service.IMateriaService;
 @Service
 public class MateriaServiceImp implements IMateriaService{
 
-	public final static Log LOGGER = LogFactory.getLog("MateriaServiceImp");
+	//public final static Log //LOGGER = LogFactory.getLog("MateriaServiceImp");
 	@Autowired
 	IMateriaRepository imateriaRepositorio;
 	
@@ -26,21 +26,21 @@ public class MateriaServiceImp implements IMateriaService{
 	@Override
 	public void agregarMateria(Materia materia) {
 		// TODO Auto-generated method stub
-		LOGGER.info("materia guardada "+materia);
+		//LOGGER.info("materia guardada "+materia);
 		imateriaRepositorio.save(materia);
 	}
 
 	@Override
 	public List<Materia> listarMaterias() {
 		// TODO Auto-generated method stub
-		LOGGER.info("lista de materias "+imateriaRepositorio.findAll());
+		//LOGGER.info("lista de materias "+imateriaRepositorio.findAll());
 		return imateriaRepositorio.findAll();
 	}
 
 	@Override
 	public Materia buscarMateria(int id) {
 		// TODO Auto-generated method stub
-		LOGGER.info("materia encontrada "+imateriaRepositorio.findById(id).orElse(null));
+		//LOGGER.info("materia encontrada "+imateriaRepositorio.findById(id).orElse(null));
 		return imateriaRepositorio.findById(id).orElse(null);
 	}
 
@@ -48,9 +48,9 @@ public class MateriaServiceImp implements IMateriaService{
 	public void modificarMateria(Materia materia, int id) {
 		// TODO Auto-generated method stub
 		materia.setId(id);
-		LOGGER.info("materia a modificar "+materia);
+		//LOGGER.info("materia a modificar "+materia);
 		imateriaRepositorio.save(materia);
-		LOGGER.info("materia modificada "+imateriaRepositorio.findById(id).orElse(null));
+		//LOGGER.info("materia modificada "+imateriaRepositorio.findById(id).orElse(null));
 		
 	}
 
@@ -59,7 +59,7 @@ public class MateriaServiceImp implements IMateriaService{
 		// TODO Auto-generated method stub
 		Materia auxMateria =new Materia();
 		auxMateria=buscarMateria(id);
-		LOGGER.info("materia a eliminar "+imateriaRepositorio.findById(id).orElse(null));
+		//LOGGER.info("materia a eliminar "+imateriaRepositorio.findById(id).orElse(null));
 		imateriaRepositorio.delete(auxMateria);
 	}
 
@@ -67,21 +67,21 @@ public class MateriaServiceImp implements IMateriaService{
 	@Override
 	public List<MateriaDto> listarMateriasDto() {
 		// TODO Auto-generated method stub
-		LOGGER.info("lista de materias dto "+iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMaterias()));
+		//LOGGER.info("lista de materias dto "+iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMaterias()));
 		return iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMaterias());
 	}
 
 	@Override
 	public List<Materia> listarMateriasPorCarrera(int carreraId) {
 		// TODO Auto-generated method stub
-		LOGGER.info("lista de materia segun carrera "+imateriaRepositorio.findByCarrera(carreraId));
+		//LOGGER.info("lista de materia segun carrera "+imateriaRepositorio.findByCarrera(carreraId));
 		return imateriaRepositorio.findByCarrera(carreraId);
 	}
 
 	@Override
 	public List<MateriaDto> listarMateriasPorCarreraDto(int carreraId) {
 		// TODO Auto-generated method stub
-		LOGGER.info("lista de materias por carrera (dto) "+iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMateriasPorCarrera(carreraId)));
+		//LOGGER.info("lista de materias por carrera (dto) "+iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMateriasPorCarrera(carreraId)));
 		return  iMateriaMapDto.convertirListaMateriaAlistaMateriaDto(listarMateriasPorCarrera(carreraId));
 	}
 	
