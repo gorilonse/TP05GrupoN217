@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>TP4_SuarezDarioOscar</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
 <link rel="stylesheet"
@@ -42,9 +42,10 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<a data-th-href="@{'/materia/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
-							<a data-th-href="@{'/materia/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>
-							<a data-th-href="@{'/alumno/materia/'+${l.id}}" class="btn btn-info">Ver alumnos inscriptos</a>
+							<a th:if="${!materiasInscritasIds.contains(l.id)}" data-th-href="@{'/alumno/inscribirAlumno/'+${alumnoForm.id}+'/'+${l.id}}" class="btn btn-success" >Inscribir</a>
+							<span th:if="${materiasInscritasIds.contains(l.id)}"
+                  class="btn btn-secondary disabled">Inscrito</span>
+													
 						</div>
 					</div>
 				</div>

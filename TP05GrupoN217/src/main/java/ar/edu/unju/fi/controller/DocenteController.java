@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.IDocenteService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/docente")
@@ -28,12 +30,16 @@ public class DocenteController {
 	}
 	
 	@PostMapping("/guardarDocente")
-	public ModelAndView guardarDocente(@ModelAttribute("docenteForm") Docente auxDocente) {
-		ModelAndView mov = new ModelAndView("redirect:/docente/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-		docenteServiceIMP.agregarDocente(auxDocente);
-		//AlumnoCollections.agregarObjeto(auxAlumno);
-		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
-		//System.out.println(auxAlumno);
+	public ModelAndView guardarDocente(@Valid @ModelAttribute("docenteForm") Docente auxDocente, BindingResult result) {
+		ModelAndView mov;
+		
+		if(result.hasErrors()) {
+			mov = new ModelAndView("docente-form");
+			mov.addObject("band", true);
+		}else {
+			mov = new ModelAndView("redirect:/docente/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
+			docenteServiceIMP.agregarDocente(auxDocente);
+		}
 		return mov;
 	}
 	
@@ -63,12 +69,18 @@ public class DocenteController {
 		return mov;
 	}
 	@PostMapping("/modificarDocente")
-	public ModelAndView modificarDocente(@ModelAttribute("docenteForm") Docente docente) {
-		ModelAndView mov = new ModelAndView("redirect:/docente/lista");	
-		System.out.println("id docente mod");
-		System.out.println(docente);
-		docenteServiceIMP.modificarDocente(docente, docente.getId());
-		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
+	public ModelAndView modificarDocente(@Valid @ModelAttribute("docenteForm") Docente docente,BindingResult result) {
+		ModelAndView mov;
+
+		if(result.hasErrors()) {
+			 mov = new ModelAndView("docente-form");
+				mov.addObject("band", false);
+		}else {
+			mov = new ModelAndView("redirect:/docente/lista");	
+			System.out.println("id docente mod");
+			System.out.println(docente);
+			docenteServiceIMP.modificarDocente(docente, docente.getId());
+		}
 		return mov;
 	}
 	

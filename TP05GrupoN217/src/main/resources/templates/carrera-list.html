@@ -12,10 +12,11 @@
 <body class="container">
 	<header data-th-replace="~{/layouts/header::header}"></header>
 
-	<main class="row">
-		<div class="mt-4 mb-4">
-			<div class="card mb-3 col-4	" data-th-each="l:${listaCarreras}">
-				<div class="row ">
+	<main class="row ">
+		<div class="p-4 col-12 ">
+			<div class="row">
+				<div class="card col-4 " data-th-each="l:${listaCarreras}">
+				<div class="row">
 					<div class="col-md-4  bg-info">
 						<img src="..." class="img-fluid rounded-start" alt="">
 					</div>
@@ -31,9 +32,11 @@
 						  <div class="card-body">
 							<a data-th-href="@{'/carrera/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
 							<a data-th-href="@{'/carrera/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>
+							<a data-th-href="@{'/alumno/carrera/'+${l.id}}" class="btn btn-info">Ver alumnos inscriptos</a>
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</main>

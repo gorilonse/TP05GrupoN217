@@ -18,37 +18,45 @@
 			<!--                          MetodoQueSeEfecutaAlPresionarBoton     -->
 			<form data-th-object="${materiaForm}"
 				data-th-action="${band}?@{/materia/guardarMateria}:@{/materia/modificarMateria}" method="post">
+				<div class=mb-3 data-th-if="!${band}">
+					<label for=id class=form-label>Id</label> <input th:readonly="!${band}"
+						type="number" class=form-control id=id data-th-field=*{id} aria-describedby=ayudaCod>
+						<div id=ayudaCod class=form-text data-th-if="!${band}">No puede modificar el id</div>
+				</div>
 				<div class=mb-3>
-					<label for=codigo class=form-label>Codigo</label> <input required th:readonly="!${band}"
+					<label for=codigo class=form-label>Codigo</label> <input
 						type="number" class=form-control id=codigo data-th-field=*{codigo} aria-describedby=ayudaCod>
-						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el Código</div>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('codigo')}" data-th-errors="*{codigo}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=nombre class=form-label>Nombre</label> <input required
 						type="text" class=form-control id=nombre data-th-field=*{nombre}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('nombre')}" data-th-errors="*{nombre}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=curso class=form-label>Curso</label> <input required
 						type="text" class=form-control id=curso data-th-field=*{curso}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('curso')}" data-th-errors="*{curso}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=cantidadDeHora class=form-label>Cantidad de
 						Horas</label> <input required type="text" class=form-control
 						id=cantidadDeHora data-th-field=*{cantidadDeHora}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('cantidadDeHora')}" data-th-errors="*{cantidadDeHora}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=docente class=form-label>Docente</label>
 					 <select
-						id="docente" class=form-control data-th-field="*{docente}">
+						id="docente" class=form-control data-th-field="*{docente.id}">
 						<option data-th-each="d:${listaDocentes}"
-							data-th-value="${d.apellido}" data-th-text="${d.apellido}"></option>
+							data-th-value="${d.id}" data-th-text="${d.id}"></option>
 					</select>
 				</div>
 				<div class=mb-3>
 					   <label for=carrera class=form-label>Carrera</label> <select
-						id="carrera" class=form-control data-th-field="*{carrera}">
-						<option data-th-each="d:${listaCarreras}"
-							data-th-value="${d.nombre}" data-th-text="${d.nombre}"></option>
+						id="carrera" class=form-control data-th-field="*{carrera.id}">
+						<option data-th-each="c:${listaCarreras}"
+							data-th-value="${c.id}" data-th-text="${c.nombre}"></option>
 					</select>
 				</div>
 				<div class=mb-3>

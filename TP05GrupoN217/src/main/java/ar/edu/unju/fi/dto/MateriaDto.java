@@ -2,6 +2,8 @@ package ar.edu.unju.fi.dto;
 
 import org.springframework.stereotype.Component;
 
+import ar.edu.unju.fi.model.Carrera;
+import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.numerado.Modalidad;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +22,6 @@ public class MateriaDto {
 	private String curso;
 	private String cantidadDeHora;   
 	private Modalidad modalidadDeHoraString;  //ENUMERADO
-	private String docente;
-	private String carrera;
+	private Docente docente;
+	private Carrera carrera;
 }

@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.dto.CarreraDto;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.ICarreraService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/carrera")
@@ -31,13 +33,20 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardarCarrera")      
-	public ModelAndView guardarCarrera(@ModelAttribute("carreraForm") Carrera auxCarrera) {
-		ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-		carreraServiceIMP.agregarCarrera(auxCarrera);
-		//AlumnoCollections.agregarObjeto(auxAlumno);
-		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
-		//System.out.println(auxAlumno);
-		return mov;
+	public ModelAndView guardarCarrera(@Valid @ModelAttribute("carreraForm") Carrera auxCarrera, BindingResult result){
+		//ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
+        
+        ModelAndView mov;
+        if(result.hasErrors()) {
+        	System.out.println("Se encontraron errores");
+    		mov= new ModelAndView("carrera-form");
+    		mov.addObject("band", true);
+        }else {
+        	System.out.println("Sin errores");
+        	carreraServiceIMP.agregarCarrera(auxCarrera);
+        	mov= new ModelAndView("redirect:/carrera/lista");
+        }
+        return mov;
 	}
 	
 	@GetMapping("/lista")
@@ -76,11 +85,20 @@ public class CarreraController {
 		return mov;
 	}
 	@PostMapping("/modificarCarrera")
-	public ModelAndView modificarCarrera(@ModelAttribute("carreraForm") Carrera carrera) {
+	public ModelAndView modificarCarrera(@Valid @ModelAttribute("carreraForm") Carrera carrera, BindingResult result) {
 	
-		ModelAndView mov = new ModelAndView("redirect:/carrera/lista");	
 		
-		carreraServiceIMP.modificarCarrera(carrera);
+		
+		ModelAndView mov;
+        if(result.hasErrors()) {
+    		mov= new ModelAndView("carrera-form");
+    		mov.addObject("band", false);
+        }else {
+    		carreraServiceIMP.modificarCarrera(carrera);
+        	mov=new ModelAndView("redirect:/carrera/lista");	
+        }
+		
+		
 		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
 		return mov;
 	}
