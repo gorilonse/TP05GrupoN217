@@ -37,7 +37,7 @@
 						<td data-th-text="${l.email}"></td>
 						<td data-th-text="${l.domicilio}"></td>
 						<td data-th-text="${l.fechaNacimineto}"></td>  -->
-						<td>
+						<td data-th-if="${actions}"> <!-- //Oculto los botones luego de hacer el filtro-->
 							<a data-th-href="@{'/alumno/modificar/'+${l.id}}" class="btn btn-warning">Modificar</a>
 							<a data-th-href="@{'/alumno/eliminar/'+${l.id}}" class="btn btn-danger">Eliminar</a>
 							<a data-th-href="@{'/alumno/inscribir/'+${l.id}}" class="btn btn-info">Inscribir</a>

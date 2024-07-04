@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.dto.CarreraDto;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.ICarreraService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/carrera")
@@ -32,17 +33,20 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardarCarrera")      
-	public ModelAndView guardarCarrera(@ModelAttribute("carreraForm") Carrera auxCarrera, BindingResult result)throws Exception {
+	public ModelAndView guardarCarrera(@Valid @ModelAttribute("carreraForm") Carrera auxCarrera, BindingResult result){
 		//ModelAndView mov = new ModelAndView("redirect:/carrera/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
         
-        ModelAndView mav;
+        ModelAndView mov;
         if(result.hasErrors()) {
-        	mav= new ModelAndView("carrera-form");
+        	System.out.println("Se encontraron errores");
+    		mov= new ModelAndView("carrera-form");
+    		mov.addObject("band", true);
         }else {
+        	System.out.println("Sin errores");
         	carreraServiceIMP.agregarCarrera(auxCarrera);
-        	mav= new ModelAndView("redirect:/carrera/lista");
+        	mov= new ModelAndView("redirect:/carrera/lista");
         }
-        return mav;
+        return mov;
 	}
 	
 	@GetMapping("/lista")
@@ -81,11 +85,20 @@ public class CarreraController {
 		return mov;
 	}
 	@PostMapping("/modificarCarrera")
-	public ModelAndView modificarCarrera(@ModelAttribute("carreraForm") Carrera carrera) {
+	public ModelAndView modificarCarrera(@Valid @ModelAttribute("carreraForm") Carrera carrera, BindingResult result) {
 	
-		ModelAndView mov = new ModelAndView("redirect:/carrera/lista");	
 		
-		carreraServiceIMP.modificarCarrera(carrera);
+		
+		ModelAndView mov;
+        if(result.hasErrors()) {
+    		mov= new ModelAndView("carrera-form");
+    		mov.addObject("band", false);
+        }else {
+    		carreraServiceIMP.modificarCarrera(carrera);
+        	mov=new ModelAndView("redirect:/carrera/lista");	
+        }
+		
+		
 		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
 		return mov;
 	}

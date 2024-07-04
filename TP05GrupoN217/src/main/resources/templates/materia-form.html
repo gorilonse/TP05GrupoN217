@@ -18,28 +18,31 @@
 			<!--                          MetodoQueSeEfecutaAlPresionarBoton     -->
 			<form data-th-object="${materiaForm}"
 				data-th-action="${band}?@{/materia/guardarMateria}:@{/materia/modificarMateria}" method="post">
-				<div class=mb-3 th:if="!${band}">
+				<div class=mb-3 data-th-if="!${band}">
 					<label for=id class=form-label>Id</label> <input th:readonly="!${band}"
 						type="number" class=form-control id=id data-th-field=*{id} aria-describedby=ayudaCod>
-						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el id</div>
+						<div id=ayudaCod class=form-text data-th-if="!${band}">No puede modificar el id</div>
 				</div>
 				<div class=mb-3>
 					<label for=codigo class=form-label>Codigo</label> <input
 						type="number" class=form-control id=codigo data-th-field=*{codigo} aria-describedby=ayudaCod>
-						
+						<div class="text-danger" data-th-if="${#fields.hasErrors('codigo')}" data-th-errors="*{codigo}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=nombre class=form-label>Nombre</label> <input required
 						type="text" class=form-control id=nombre data-th-field=*{nombre}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('nombre')}" data-th-errors="*{nombre}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=curso class=form-label>Curso</label> <input required
 						type="text" class=form-control id=curso data-th-field=*{curso}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('curso')}" data-th-errors="*{curso}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=cantidadDeHora class=form-label>Cantidad de
 						Horas</label> <input required type="text" class=form-control
 						id=cantidadDeHora data-th-field=*{cantidadDeHora}>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('cantidadDeHora')}" data-th-errors="*{cantidadDeHora}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=docente class=form-label>Docente</label>

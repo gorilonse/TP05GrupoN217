@@ -21,34 +21,41 @@
 				 <div class=mb-3>
 				 <label for=dni class=form-label>DNI</label>
 				 <input type="number" class=form-control id=dni data-th-field=*{dni}>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('dni')}" data-th-errors="*{dni}"></div>
 				 </div>
 				 <div class=mb-3>
 				 <label for=nombre class=form-label>Nombre</label>
 				 <input type="text" class=form-control id=nombre data-th-field=*{nombre}>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('nombre')}" data-th-errors="*{nombre}"></div>
 				 </div>
 				 <div class=mb-3>
 				 <label for=apellido class=form-label>Apellido</label>
 				 <input type="text" class=form-control id=apellido data-th-field=*{apellido}>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('apellido')}" data-th-errors="*{apellido}"></div>
 				 </div>
 				  <div class=mb-3>
 				 <label for=email class=form-label>E-mail</label>
 				 <input type="email" class=form-control id=email aria-describedby=ayudaEmail data-th-field=*{email}>
 				 <div id=ayudaEmail class=form-text>Ingresa correo electronico.</div>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></div>
 				 </div>
 				 <div class=mb-3>
 				 <label for=telefono class=form-label>Numero de Celular</label>
 				 <input type="text" class=form-control id=telefono aria-describedby=ayudaTelefono data-th-field=*{telefono}>
 				 <div id=ayudaTelefono class=form-text>Ingresa el numero de celular sin el +54, solo caracteristica de provincia, y sin el 15.</div>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('telefono')}" data-th-errors="*{telefono}"></div>
 				 </div>
 				 <div class=mb-3>
 				 <label for=fechaNacimiento class=form-label>Fecha de Nacimiento</label>
 				 <input type="date" class=form-control id=fechaNacimineto aria-describedby=ayudafechaNacimiento data-th-field=*{fechaNacimineto}>
 				 <div id=ayudafechaNacimiento class=form-text>Ingrese dia/mes/año de nacimiento.</div>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('fechaNacimineto')}" data-th-errors="*{fechaNacimineto}"></div>
 				 </div>
 				 <div class=mb-3>
 				 <label for=domicilio class=form-label>Domicilio</label>
 				 <input type="text" class=form-control id=domicilio aria-describedby=ayudadomicilio data-th-field=*{domicilio}>
 				 <div id=ayudadomicilio class=form-text>Ingresa la calle, numero de casa, sector y barrio.</div>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('domicilio')}" data-th-errors="*{domicilio}"></div>
 				 </div>
 				 <div class=mb-3>
 					   <label for=carrera class=form-label>Carrera</label> <select
@@ -56,11 +63,13 @@
 						<option data-th-each="d:${listaCarreras}"
 							data-th-value="${d.id}" data-th-text="${d.nombre}"></option>
 					</select>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('carrera')}" data-th-errors="*{carrera}"></div>
 				</div>
 				 <div class=mb-3>
 				 <label for=lu class=form-label>LU</label>
 				 <input type="text" class=form-control id=lu aria-describedby=ayudaLu data-th-field=*{LU}>
 				 <div id=ayudaLu class=form-text>Ingresa el Numero de Libreta Universitaria.</div>
+				 <div class="text-danger" data-th-if="${#fields.hasErrors('LU')}" data-th-errors="*{LU}"></div>
 				 </div>			  
 			  
 			  <button type="submit" class="btn btn-primary">Enviar</button>

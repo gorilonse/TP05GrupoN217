@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.dto.AlumnoDto;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IMateriaService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/alumno")
@@ -40,12 +43,19 @@ public class AlumnoConrtoller {
 	}
 	
 	@PostMapping("/guardarAlumno")
-	public ModelAndView guardarAlumno(@ModelAttribute("alumnoForm") Alumno auxAlumno) {
-		ModelAndView mov = new ModelAndView("redirect:/alumno/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-		alumnoServiceIMP.agregarAlumno(auxAlumno);
-		//AlumnoCollections.agregarObjeto(auxAlumno);
-		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
-		//System.out.println(auxAlumno);
+	public ModelAndView guardarAlumno(@Valid @ModelAttribute("alumnoForm") Alumno auxAlumno,BindingResult result) {
+		ModelAndView mov;//aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
+		
+		
+		if(result.hasErrors()) {
+			mov = new ModelAndView("alumno");
+			mov.addObject("band", true);
+			mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
+		}else {
+			mov = new ModelAndView("redirect:/alumno/lista");
+			alumnoServiceIMP.agregarAlumno(auxAlumno);
+		}
+		
 		return mov;
 	}
 	
@@ -54,7 +64,7 @@ public class AlumnoConrtoller {
 		ModelAndView mov = new ModelAndView("alumno-list");
 		//mov.addObject("listaDeAlumnos",alumnoServiceIMP.listarAlumnos());
 		mov.addObject("listaDeAlumnos",alumnoServiceIMP.listarAlumnoDto());
-		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
+		mov.addObject("actions",true);
 		return mov;
 	}
 	
@@ -121,16 +131,18 @@ public class AlumnoConrtoller {
 	@GetMapping("/carrera/{id}")
 	public ModelAndView listarAlumnosPorCarrera(@PathVariable("id") int carreraId) {
 	    ModelAndView mov = new ModelAndView("alumno-list");
-	    List<Alumno> alumnosPorCarrera = alumnoServiceIMP.listarAlumnosPorCarrera(carreraId);
+	    List<AlumnoDto> alumnosPorCarrera = alumnoServiceIMP.listarAlumnosPorCarreraDto(carreraId);
 	    mov.addObject("listaDeAlumnos", alumnosPorCarrera);
+		mov.addObject("actions",false);
 	    return mov;
 	}
 	
 	@GetMapping("/materia/{id}")
 	public ModelAndView listarAlumnosPorMateria(@PathVariable("id") int materiaId) {
 	    ModelAndView mov = new ModelAndView("alumno-list");
-	    List<Alumno> alumnosPorMateria = alumnoServiceIMP.listarAlumnosPorMateria(materiaId);
+	    List<AlumnoDto> alumnosPorMateria = alumnoServiceIMP.listarAlumnosPorMateriaDto(materiaId);
 	    mov.addObject("listaDeAlumnos", alumnosPorMateria);
+		mov.addObject("actions",false);
 	    return mov;
 	}
 		

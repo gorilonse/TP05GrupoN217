@@ -36,7 +36,7 @@ public class Carrera {
 	@Column(name = "car_id")
 	private int id;
 	@NotBlank(message="Debe ingresar el Codigo")
-	@Size(min=3,max=8, message="El código debe poseer como minimo 3 digitos y como maximo 8 dígitos")
+	@Size(min=2,max=10, message="El código debe poseer como minimo 2 digitos y como maximo 10 dígitos")
 	private String codigo;
 	@NotBlank(message="Debe ingresar nombre")
 	@Size(min=2, max=40,message="El nombre no puede llevar menos de 2 caracteres y más de 30 caracteres")

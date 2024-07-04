@@ -17,6 +17,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -40,7 +42,7 @@ public class Materia {
 		private int id;
 		
 		@NotBlank(message="Debe ingresar el Codigo")
-		@Size(min=3,max=8, message="El código debe poseer como minimo 3 digitos y como maximo 8 dígitos")
+		@Size(min=2,max=10, message="El código debe poseer como minimo 2 digitos y como maximo 10 dígitos")
 		private String codigo;
 		
 		@NotBlank(message="Debe ingresar nombre de la materia")
@@ -49,12 +51,13 @@ public class Materia {
 		private String nombre;
 		
 		@NotBlank(message="Debe ingresar el curso")
-		@Size(min=2, max=40,message="El curso no puede llevar menos de 2 caracteres y más de 30 caracteres")
-		@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
+		@Size(min=2, max=40,message="El curso no puede llevar menos de 2 caracteres y más de 40 caracteres")
 		private String curso;
 		
 		@Pattern(regexp = "\\d+", message = "La cantidad de horas debe ser un número")
+		@Min(100)@Max(1000)
 		private String cantidadDeHora;   
+		
 		@NotNull(message="Debe seleccionar una modalidad")
 		private Modalidad modalidadDeHoraString;  //ENUMERADO
 		

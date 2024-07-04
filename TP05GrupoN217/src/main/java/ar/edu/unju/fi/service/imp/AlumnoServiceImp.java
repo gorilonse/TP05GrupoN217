@@ -2,6 +2,8 @@ package ar.edu.unju.fi.service.imp;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ import ar.edu.unju.fi.service.IAlumnoService;
 
 @Service //indicamos que funciona como servicio.
 public class AlumnoServiceImp implements IAlumnoService {
+
+	public final static Log LOGGER = LogFactory.getLog("AlumnoServiceImp");
+	
 	
 	@Autowired  //esto indica q se usa inyeccion de dependencia.
 	IAlumnoRepository ialumnoRepositorio;
@@ -27,78 +32,80 @@ public class AlumnoServiceImp implements IAlumnoService {
 	
 	@Override
 	public void agregarAlumno(Alumno alumno) {
-		// TODO Auto-generated method stub
 		ialumnoRepositorio.save(alumno);
+		LOGGER.info("alumno guardado "+alumno);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnos() {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+ialumnoRepositorio.findAll());
 		return ialumnoRepositorio.findAll();
 	}
 
 	@Override
 	public Alumno buscarAlumno(int id) {
-		// TODO Auto-generated method stub
+
+		LOGGER.info("alumno buscado "+ialumnoRepositorio.findById(id).orElse(null));
 		return ialumnoRepositorio.findById(id).orElse(null);
 	}
 
 	@Override
 	public void modificarAlumno(Alumno alumno, int id) {
-		// TODO Auto-generated method stub
 		alumno.setId(id);
-		System.out.println(alumno);
+		LOGGER.info("alumno a modificar "+alumno);
 		ialumnoRepositorio.save(alumno);
+		LOGGER.info("alumno modificado "+ialumnoRepositorio.findById(id).orElse(null));
 
 	}
 
 	@Override
 	public void eliminarAlumno(int id) {
-		// TODO Auto-generated method stub
 		Alumno auxAlumno = new Alumno();
 		auxAlumno=buscarAlumno(id);
 		System.out.println(auxAlumno);
+		LOGGER.info("alumno eliminar "+ialumnoRepositorio.findById(id).orElse(null));
 		ialumnoRepositorio.delete(auxAlumno);
 	}
 
 	//LO NUEVO DE DTO abajo
 	@Override
 	public List<AlumnoDto> listarAlumnoDto() {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos()));
 		return iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnos());
 	}
 
 	@Override
 	public void inscribirAlumnoAMateria(int alumnoId, int materiaId) {
-		// TODO Auto-generated method stub
 		Alumno alumno = ialumnoRepositorio.findById(alumnoId).orElse(null);
 	    Materia materia = materiaRepository.findById(materiaId).orElse(null);
 
+		LOGGER.info("alumno "+ialumnoRepositorio.findById(alumnoId).orElse(null));
+		LOGGER.info("materia "+materiaRepository.findById(materiaId).orElse(null));
 	    alumno.getMaterias().add(materia);
 	    ialumnoRepositorio.save(alumno);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnosPorCarrera(int carreraId) {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+ialumnoRepositorio.findByCarreraId(carreraId));
 		return ialumnoRepositorio.findByCarreraId(carreraId);
 	}
 
 	@Override
 	public List<Alumno> listarAlumnosPorMateria(int materiaId) {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+ialumnoRepositorio.findByMateriaId(materiaId));
 		return ialumnoRepositorio.findByMateriaId(materiaId);
 	}
 
 	@Override
 	public List<AlumnoDto> listarAlumnosPorCarreraDto(int carreraId) {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(carreraId)));
 		return iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(carreraId));
 	}
 
 	@Override
 	public List<AlumnoDto> listarAlumnosPorMateriaDto(int materiaId) {
-		// TODO Auto-generated method stub
+		LOGGER.info("alumnos listados "+iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(materiaId)));
 		return  iAlumnoMapDto.convertirListaAlumnoAlistaAlumnoDtos(listarAlumnosPorCarrera(materiaId));
 	}
 

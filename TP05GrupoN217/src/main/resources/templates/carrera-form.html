@@ -27,17 +27,18 @@
 					<label for=codigo class=form-label>Codigo</label> 
 					<input	type="text" class=form-control id=codigo data-th-field=*{codigo} required  aria-describedby=ayudaCod>
 						<div id=ayudaCod class=form-text th:if="!${band}">No puede modificar el Código</div> 
-						<div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
+						<div class="text-danger" data-th-if="${#fields.hasErrors('codigo')}" data-th-errors="*{codigo}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=nombre class=form-label>Nombre</label> 
 					<input required type="text" class=form-control id=nombre data-th-field=*{nombre}>
-        			<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+        			<div class="text-danger" data-th-if="${#fields.hasErrors('nombre')}" data-th-errors="*{nombre}"></div>
 				</div>
 				<div class=mb-3>
 					<label for=cantidadDeAnios class=form-label>Cantidad de	Años</label> 
 					<input required type="number" class=form-control id=cantidadDeAnios data-th-field=*{cantidadDeAnios}>
-        			<div class="text-danger" th:if="${#fields.hasErrors('cantidadDeAnios')}" th:errors="*{cantidadDeAnios}"></div>
+        			<div class="text-danger" data-th-if="${#fields.hasErrors('cantidadDeAnios')}" data-th-errors="*{cantidadDeAnios}"></div>
+					<div id=ayudaanios class=form-text>El minimo es de 2 y el máximo de 10.</div>
 				</div>
 				<div class="mb-3 form-check">
 					<label class="form-check-label" for="estado">Estado</label> 

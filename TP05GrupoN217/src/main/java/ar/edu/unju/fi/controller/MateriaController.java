@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import ar.edu.unju.fi.numerado.Modalidad;
 import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IDocenteService;
 import ar.edu.unju.fi.service.IMateriaService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping ("/materia")
@@ -38,9 +40,20 @@ public class MateriaController {
 	}
 	
 	@PostMapping("/guardarMateria")
-	public ModelAndView guardarMateria(@ModelAttribute("materiaForm") Materia auxMateria) {
-		ModelAndView mov = new ModelAndView("redirect:/materia/lista"); //aqui va el nombreDelHTML que quiero ver luego de presionarBOTON
-		materiaServiceIMP.agregarMateria(auxMateria);
+	public ModelAndView guardarMateria(@Valid @ModelAttribute("materiaForm") Materia auxMateria, BindingResult result) {
+
+		
+		
+		ModelAndView mov;
+		if(result.hasErrors()) {
+			mov = new ModelAndView("materia-form");
+			mov.addObject("band", true);
+		}else {
+			materiaServiceIMP.agregarMateria(auxMateria);
+			mov = new ModelAndView("redirect:/materia/lista");
+		}
+		
+		
 		//AlumnoCollections.agregarObjeto(auxAlumno);
 		//mov.addObject("listaDeAlumnos", AlumnoCollections.listarObjetos());
 		//System.out.println(auxAlumno);
@@ -77,12 +90,19 @@ public class MateriaController {
 		return mov;
 	}
 	@PostMapping("/modificarMateria")
-	public ModelAndView modificarMateria(@ModelAttribute("materiaForm") Materia materia) {
-		ModelAndView mov = new ModelAndView("redirect:/materia/lista");	
-		System.out.println("id materia mod");
-		System.out.println(materia);
-		materiaServiceIMP.modificarMateria(materia, materia.getId());
+	public ModelAndView modificarMateria(@Valid @ModelAttribute("materiaForm") Materia materia,BindingResult result) {
+		
 		//AlumnoCollections.modificarObjeto(alumno, alumno.getDni());
+		
+		
+		ModelAndView mov;
+		if(result.hasErrors()) {
+			mov = new ModelAndView("materia-form");
+			mov.addObject("band", true);
+		}else {
+			materiaServiceIMP.modificarMateria(materia, materia.getId());
+			mov = new ModelAndView("redirect:/materia/lista");	
+		}
 		return mov;
 	}
 }
