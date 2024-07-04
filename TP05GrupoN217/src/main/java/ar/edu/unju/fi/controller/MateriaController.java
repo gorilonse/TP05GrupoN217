@@ -58,8 +58,17 @@ public class MateriaController {
 			mov.addObject("listaCarreras",iCarreraServiceIMP.listarCarreras(true));
 			mov.addObject("modalidad",Modalidad.values());
 		}else {
-			materiaServiceIMP.agregarMateria(auxMateria);
 			mov = new ModelAndView("redirect:/materia/lista");
+			try {
+
+				materiaServiceIMP.agregarMateria(auxMateria);
+			} catch (Exception e) {
+				// TODO: handle exception
+				mov = new ModelAndView("materia-list");
+				mov.addObject("listaDeMaterias",materiaServiceIMP.listarMateriasDto());
+				mov.addObject("banderror", true);
+				mov.addObject("messageError", "No puede agregar profesores con materias asignadas");
+			}
 		}
 		
 		
@@ -112,8 +121,17 @@ public class MateriaController {
 			mov.addObject("modalidad",Modalidad.values());
 			mov.addObject("band", false); // TRUE crea un nuevo elemento pero en FALSE permite modificar/Corregir el error, ver el HTML
 		}else {
-			materiaServiceIMP.modificarMateria(materia, materia.getId());
+			
 			mov = new ModelAndView("redirect:/materia/lista");	
+			try {
+				materiaServiceIMP.modificarMateria(materia, materia.getId());
+			} catch (Exception e) {
+				// TODO: handle exception
+				mov = new ModelAndView("materia-list");
+				mov.addObject("listaDeMaterias",materiaServiceIMP.listarMateriasDto());
+				mov.addObject("banderror", true);
+				mov.addObject("messageError", "No puede agregar profesores con materias asignadas");
+			}
 		}
 		return mov;
 	}

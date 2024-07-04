@@ -49,8 +49,9 @@
 					 <select
 						id="docente" class=form-control data-th-field="*{docente.id}">
 						<option data-th-each="d:${listaDocentes}"
-							data-th-value="${d.id}" data-th-text="${d.id}"></option>
+							data-th-value="${d.id}" data-th-text="${d.apellido}"></option>
 					</select>
+					
 				</div>
 				<div class=mb-3>
 					   <label for=carrera class=form-label>Carrera</label> <select
